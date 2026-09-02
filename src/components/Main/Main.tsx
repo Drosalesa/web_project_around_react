@@ -1,19 +1,9 @@
-import logo from './images/logo.svg'
-import avatar from './images/avatar.jpg'
+import avatar from '../../images/avatar.jpg'
 
-function App() {
-  
-  return (
-    <>
-      <div className="page__content">
-      <header className="header page__section">
-        <img
-          alt="Logotipo Around The U.S."
-          className="logo header__logo"
-          src={logo}
-        />
-      </header>
-      <main className="content">
+function Main(): React.JSX.Element {
+    return (
+        <>
+        <main className="content">
         <section className="profile page__section">
           <div className="profile__image-container">
             <img className="profile__image" src={avatar} alt="Avatar" />
@@ -55,13 +45,9 @@ function App() {
             </template>
           </ul>
         </section>
-      </main>
-      <footer className="footer page__section">
-        <p className="footer__copyright">© 2025 Around The U.S.</p>
-      </footer>
-      </div>
-    </>
-  )
+        </main>
+        </>
+    )
 }
 
-export default App
+export default Main
