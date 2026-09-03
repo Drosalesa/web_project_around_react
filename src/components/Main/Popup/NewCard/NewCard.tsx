@@ -25,7 +25,7 @@ function NewCard(): React.JSX.Element {
         />
         <span className='popup__error' id='card-url-error'></span>
       </label>
-      <button className='button popup__button' type='submit' disabled>
+      <button className='button popup__button' type='submit'>
         Crear
       </button>
     </form>

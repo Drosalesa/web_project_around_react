@@ -12,7 +12,7 @@ function EditAvatar(): React.JSX.Element {
         />
         <span className='popup__error popup__error_avatar'></span>
       </label>
-      <button className='button popup__button' type='submit' disabled>
+      <button className='button popup__button' type='submit'>
         Guardar
       </button>
     </form>
