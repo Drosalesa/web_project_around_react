@@ -11,6 +11,30 @@ export default function App() {
   const [cards, setCards] = useState<CardData[]>([]);
   const [popup, setPopup] = useState<PopupConfig | null>(null);
 
+  const handleCardLike = async (card: CardData) => {
+    const isLiked = card.isLiked;
+    try {
+      const apiCall = isLiked ? api.removeLike(card._id) : api.addLike(card._id);
+      const newCard = await apiCall;
+      // Usamos .map para reemplazar solo la tarjeta que cambió
+      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCardDelete = async (card: CardData) => {
+    try {
+      await api.deleteCard(card._id);
+      // Usamos .filter para crear un nuevo arreglo sin la tarjeta borrada
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+
   // useEffect con un arreglo vacío [] se ejecuta UNA SOLA VEZ al cargar la página
   useEffect(() => {
     (async () => {
@@ -44,6 +68,8 @@ export default function App() {
           cards={cards}
           handleOpenPopup={handleOpenPopup}
           handleClosePopup={handleClosePopup}
+          handleCardLike={handleCardLike}
+          handleCardDelete={handleCardDelete}
           popup={popup}
         />
         <Footer />

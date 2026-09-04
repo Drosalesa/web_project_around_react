@@ -73,13 +73,13 @@ class Api {
       : this.addLike(cardId);
   }
 
-  private addLike(cardId: string): Promise<CardData> {
+  addLike(cardId: string): Promise<CardData> {
     return this.request<CardData>(`cards/${cardId}/likes`, {
       method: "PUT",
     });
   }
 
-  private removeLike(cardId: string): Promise<CardData> {
+  removeLike(cardId: string): Promise<CardData> {
     return this.request<CardData>(`cards/${cardId}/likes`, {
       method: "DELETE",
     });

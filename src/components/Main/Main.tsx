@@ -76,7 +76,12 @@ function Main(props: MainProps): React.JSX.Element {
         <section className="cards page__section">
           <ul className="cards__list">
             {props.cards.map((card) => (
-              <Card key={card._id} card={card} handleOpenPopup={props.handleOpenPopup} />
+              <Card
+              key={card._id}
+              card={card}
+              handleOpenPopup={props.handleOpenPopup}
+              handleCardDelete={props.handleCardDelete}
+              handleCardLike={props.handleCardLike} />
             )
             )}
           </ul>

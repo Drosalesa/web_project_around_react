@@ -17,6 +17,8 @@ export interface CardData {
 export type CardProps = {
   card: CardData;
   handleOpenPopup: (popup: PopupConfig) => void;
+  handleCardLike: (card: CardData) => void;
+  handleCardDelete: (card: CardData) => void;
 };
 
 export type ImageProps = {
@@ -44,6 +46,8 @@ export interface CurrentUserContextType {
 export type MainProps = {
   handleOpenPopup: (popup: PopupConfig) => void;
   handleClosePopup: () => void;
+  handleCardLike: (card: CardData) => void;
+  handleCardDelete: (card: CardData) => void;
   popup: PopupConfig | null;
   cards: CardData[];
 }
