@@ -1,5 +1,4 @@
 import avatar from '../../images/avatar.jpg'
-import { useState } from 'react'
 import Popup from './Popup/Popup';
 import type { PopupConfig } from '../../types/types.ts';
 import NewCard from './Popup/NewCard/NewCard.tsx';
@@ -7,7 +6,10 @@ import EditProfile from './Popup/EditProfile/EditProfile.tsx';
 import EditAvatar from './Popup/EditAvatar/EditAvatar.tsx';
 import type { CardData } from '../../types/types.ts';
 import Card from './Card/Card.tsx';
-
+import { useContext } from 'react';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
+import type { MainProps } from '../../types/types.ts';
+/*
 const cards: CardData[] = [
   {
     isLiked: false,
@@ -26,9 +28,10 @@ const cards: CardData[] = [
     createdAt: '2019-07-05T08:11:58.324Z',
   },
 ];
+*/
+function Main(props: MainProps): React.JSX.Element {
 
-function Main(): React.JSX.Element {
-  const [popup, setPopup] = useState<PopupConfig | null>(null);
+  const { currentUser } = useContext (CurrentUserContext);
 
   const newCardPopup: PopupConfig = {
     title: "Nuevo lugar",
@@ -45,54 +48,48 @@ function Main(): React.JSX.Element {
     children: <EditAvatar/>
   };
 
-  function handleOpenPopup(popup: PopupConfig): void {
-    setPopup(popup);
-  }
-
-  function handleClosePopup(): void {
-    setPopup(null);
-  }
     return (
         <>
         <main className="content">
         <section className="profile page__section">
           <div className="profile__image-container">
             <img className="profile__image" 
-            src={avatar} alt="Avatar"
-            onClick={() => handleOpenPopup(editAvatarPopup)} />
+            src={currentUser?.avatar}
+            alt={currentUser?.name}
+            onClick={() => props.handleOpenPopup(editAvatarPopup)} />
           </div>
           <div className="profile__info">
-            <h1 className="profile__title">Jacques Cousteau</h1>
+            <h1 className="profile__title">{currentUser?.name}</h1>
             <button
               aria-label="Editar perfil"
               className="profile__edit-button"
               type="button"
-              onClick={() => handleOpenPopup(editProfilePopup)}
+              onClick={() => props.handleOpenPopup(editProfilePopup)}
             ></button>
-            <p className="profile__description">Explorador</p>
+            <p className="profile__description">{currentUser?.about}</p>
           </div>
           <button
             aria-label="Agregar tarjeta"
             className="profile__add-button"
             type="button"
-            onClick={() => handleOpenPopup(newCardPopup)}
+            onClick={() => props.handleOpenPopup(newCardPopup)}
           ></button>
         </section>
         <section className="cards page__section">
           <ul className="cards__list">
-            {cards.map((card) => (
-              <Card key={card._id} card={card} handleOpenPopup={handleOpenPopup} />
+            {props.cards.map((card) => (
+              <Card key={card._id} card={card} handleOpenPopup={props.handleOpenPopup} />
             )
             )}
           </ul>
         </section>
-        {popup && (
+        {props.popup && (
           <Popup
-          onClose={handleClosePopup}
-          title={popup.title}
-          isOpen={popup !== null}
+          onClose={props.handleClosePopup}
+          title={props.popup.title}
+          isOpen={props.popup !== null}
           >
-            {popup.children}
+            {props.popup.children}
           </Popup>
         )}
         </main>

@@ -29,3 +29,21 @@ export type PopupProps = {
     onClose: () => void;
     isOpen: boolean;
 };
+
+export interface UserData {
+  name: string;
+  about: string;
+  avatar: string;
+  _id: string;
+}
+
+export interface CurrentUserContextType {
+  currentUser: UserData | null;
+}
+
+export type MainProps = {
+  handleOpenPopup: (popup: PopupConfig) => void;
+  handleClosePopup: () => void;
+  popup: PopupConfig | null;
+  cards: CardData[];
+}
