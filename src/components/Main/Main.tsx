@@ -1,10 +1,8 @@
-import avatar from '../../images/avatar.jpg'
 import Popup from './Popup/Popup';
 import type { PopupConfig } from '../../types/types.ts';
 import NewCard from './Popup/NewCard/NewCard.tsx';
 import EditProfile from './Popup/EditProfile/EditProfile.tsx';
 import EditAvatar from './Popup/EditAvatar/EditAvatar.tsx';
-import type { CardData } from '../../types/types.ts';
 import Card from './Card/Card.tsx';
 import { useContext } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
