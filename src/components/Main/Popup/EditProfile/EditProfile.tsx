@@ -9,7 +9,7 @@ function EditProfile(): React.JSX.Element {
 
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleUpdateUser({ name, description: description })
+    handleUpdateUser({ name, description })
   }
 
   return (
