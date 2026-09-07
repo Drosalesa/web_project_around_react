@@ -40,16 +40,16 @@ class Api {
 
   updateUserInfo({
     name,
-    description,
+    about,
   }: {
     name: string;
-    description: string;
+    about: string;
   }): Promise<UserData> {
     return this.request<UserData>("users/me", {
       method: "PATCH",
       body: JSON.stringify({
         name,
-        about: description,
+        about: about,
       }),
     });
   }

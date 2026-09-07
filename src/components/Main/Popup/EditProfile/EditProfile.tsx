@@ -5,11 +5,11 @@ function EditProfile(): React.JSX.Element {
   const { currentUser, handleUpdateUser } = useContext(CurrentUserContext);
 
   const [name, setName] = useState(currentUser?.name || '');
-  const [description, setDescription] = useState(currentUser?.description || '');
+  const [description, setDescription] = useState(currentUser?.about || '');
 
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleUpdateUser({ name, description })
+    handleUpdateUser({ name, about: description})
   }
 
   return (

@@ -39,14 +39,19 @@ export type PopupProps = {
 
 export interface UserData {
   name: string;
-  description: string;
-  avatar?: string;
-  _id?: string;
+  about: string;
+  avatar: string;
+  _id: string;
+}
+
+export interface UserFormData {
+  name: string;
+  about: string;
 }
 
 export interface CurrentUserContextType {
   currentUser: UserData | null;
-  handleUpdateUser: (currentUser: UserData) => void;
+  handleUpdateUser: (currentUser: UserFormData) => void;
   handleUpdateAvatar: (avatar: string) => void;
   handleAddPlaceSubmit: (data: CardFormData) => void;
 }

@@ -4,7 +4,7 @@ import Footer from './Footer/Footer.tsx'
 import { useEffect, useState } from 'react';
 import {api} from '../utils/api.ts';
 import CurrentUserContext from '../contexts/CurrentUserContext';
-import type { UserData, CardData, PopupConfig, CardFormData } from '../types/types.ts';
+import type { UserData, UserFormData, CardData, PopupConfig, CardFormData } from '../types/types.ts';
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState<UserData | null>(null);
@@ -33,9 +33,10 @@ export default function App() {
     }
   };
 
-  const handleUpdateUser = async (currentUser: UserData) => {
+  const handleUpdateUser = async (user: UserFormData) => {
     try {
-      await api.updateUserInfo(currentUser);
+      const updatedUser = await api.updateUserInfo(user);
+      setCurrentUser(updatedUser);
       setPopup(null);
     } catch (error) {
       console.error(error);
@@ -44,7 +45,8 @@ export default function App() {
 
   const handleUpdateAvatar = async (avatar: string) => {
     try {
-      await api.updateAvatar(avatar);
+      const updatedUser = await api.updateAvatar(avatar);
+      setCurrentUser(updatedUser);
       setPopup(null);
     } catch (error) {
       console.error(error);

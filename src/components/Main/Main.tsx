@@ -64,7 +64,7 @@ function Main(props: MainProps): React.JSX.Element {
               type="button"
               onClick={() => props.handleOpenPopup(editProfilePopup)}
             ></button>
-            <p className="profile__description">{currentUser?.description}</p>
+            <p className="profile__description">{currentUser?.about}</p>
           </div>
           <button
             aria-label="Agregar tarjeta"
