@@ -38,7 +38,7 @@ class Api {
     return this.request<CardData[]>("cards");
   }
 
-  patchUser({
+  updateUserInfo({
     name,
     description,
   }: {
@@ -91,7 +91,7 @@ class Api {
     });
   }
 
-  editAvatar(avatar: string): Promise<UserData> {
+  updateAvatar(avatar: string): Promise<UserData> {
     return this.request<UserData>("users/me/avatar", {
       method: "PATCH",
       body: JSON.stringify({ avatar }),

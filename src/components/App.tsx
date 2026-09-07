@@ -4,7 +4,7 @@ import Footer from './Footer/Footer.tsx'
 import { useEffect, useState } from 'react';
 import {api} from '../utils/api.ts';
 import CurrentUserContext from '../contexts/CurrentUserContext';
-import type { UserData, CardData, PopupConfig } from '../types/types.ts';
+import type { UserData, CardData, PopupConfig, CardFormData } from '../types/types.ts';
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState<UserData | null>(null);
@@ -33,7 +33,33 @@ export default function App() {
     }
   };
 
+  const handleUpdateUser = async (currentUser: UserData) => {
+    try {
+      await api.updateUserInfo(currentUser);
+      setPopup(null);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
+  const handleUpdateAvatar = async (avatar: string) => {
+    try {
+      await api.updateAvatar(avatar);
+      setPopup(null);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handleAddPlaceSubmit = async (data: CardFormData) => {
+    try {
+      const newCard = await api.postNewCard(data);
+      setCards ((state) => [newCard, ...state]);
+      setPopup(null);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   // useEffect con un arreglo vacío [] se ejecuta UNA SOLA VEZ al cargar la página
   useEffect(() => {
@@ -61,7 +87,7 @@ export default function App() {
 
   return (
     // Proveemos los datos a toda la aplicación
-    <CurrentUserContext.Provider value={{ currentUser, /* pasaremos funciones aquí después */ }}>
+    <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser, handleUpdateAvatar, handleAddPlaceSubmit }}>
       <div className='page__content'>
         <Header />
         <Main

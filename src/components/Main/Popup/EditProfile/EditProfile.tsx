@@ -1,8 +1,23 @@
+import { useState, useContext } from "react";
+import CurrentUserContext from "../../../../contexts/CurrentUserContext.tsx";
+
 function EditProfile(): React.JSX.Element {
+  const { currentUser, handleUpdateUser } = useContext(CurrentUserContext);
+
+  const [name, setName] = useState(currentUser?.name || '');
+  const [description, setDescription] = useState(currentUser?.description || '');
+
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    handleUpdateUser({ name, description: description })
+  }
+
   return (
-    <form className='popup__form' id='edit-profile-form' name='edit-profile-form' noValidate>
+    <form onSubmit={handleSubmit} className='popup__form' id='edit-profile-form' name='edit-profile-form' noValidate>
       <label className='popup__field'>
         <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           id='name'
           className='popup__input popup__input_type_name'
           name='name'
@@ -16,6 +31,8 @@ function EditProfile(): React.JSX.Element {
       </label>
       <label className='popup__field'>
         <input
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           id='description'
           className='popup__input popup__input_type_description'
           name='description'

@@ -14,6 +14,11 @@ export interface CardData {
   isLiked: boolean;
 };
 
+export interface CardFormData {
+  name: string;
+  link: string;
+};
+
 export type CardProps = {
   card: CardData;
   handleOpenPopup: (popup: PopupConfig) => void;
@@ -34,13 +39,16 @@ export type PopupProps = {
 
 export interface UserData {
   name: string;
-  about: string;
-  avatar: string;
-  _id: string;
+  description: string;
+  avatar?: string;
+  _id?: string;
 }
 
 export interface CurrentUserContextType {
   currentUser: UserData | null;
+  handleUpdateUser: (currentUser: UserData) => void;
+  handleUpdateAvatar: (avatar: string) => void;
+  handleAddPlaceSubmit: (data: CardFormData) => void;
 }
 
 export type MainProps = {
