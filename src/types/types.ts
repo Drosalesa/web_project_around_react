@@ -64,3 +64,8 @@ export type MainProps = {
   popup: PopupConfig | null;
   cards: CardData[];
 }
+
+export type RemoveCardProps = {
+  card: CardData;
+  handleCardDelete: (card: CardData) => void;
+}

@@ -1,6 +1,7 @@
 import type { PopupConfig } from '../../../types/types.ts';
 import type { CardProps } from '../../../types/types.ts';
 import ImagePopup from '../Popup/ImagePopup/ImagePopup.tsx';
+import RemoveCard from '../Popup/RemoveCard/RemoveCard.tsx';
 
 
 export default function Card(props: CardProps): React.JSX.Element {
@@ -10,6 +11,12 @@ export default function Card(props: CardProps): React.JSX.Element {
     };
     const cardLikeButtonClassName = `card__like-button ${
       props.card.isLiked ? "card__like-button_is-active" : ""}`
+    const removeCardPopup: PopupConfig = {
+      title: "¿Estás seguro?",
+      children: <RemoveCard
+      card={props.card}
+      handleCardDelete={props.handleCardDelete}/>
+    }
   return (
     <li className='card'>
       <img className='card__image' 
@@ -21,7 +28,7 @@ export default function Card(props: CardProps): React.JSX.Element {
         aria-label='Delete card'
         className='card__delete-button'
         type='button'
-        onClick={() => props.handleCardDelete(props.card)}
+        onClick={() => props.handleOpenPopup(removeCardPopup)}
       />
       <div className='card__description'>
         <h2 className='card__title'>{name}</h2>
