@@ -3,7 +3,6 @@ import type { PopupConfig } from '../../types/types.ts';
 import NewCard from './Popup/NewCard/NewCard.tsx';
 import EditProfile from './Popup/EditProfile/EditProfile.tsx';
 import EditAvatar from './Popup/EditAvatar/EditAvatar.tsx';
-import RemoveCard from './Popup/RemoveCard/RemoveCard.tsx';
 import Card from './Card/Card.tsx';
 import { useContext } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';

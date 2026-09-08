@@ -1,21 +1,26 @@
-# Tripleten web_project_around_react
+# Proyecto 12: Tripleten web_project_around_react
 
-# Página para agregar, eliminar y dar me gusta a fotos de lugares visitados "Around The US".
+## Descripción
 
-# Proyecto 12
+Página para agregar, eliminar y dar me gusta a fotos de lugares visitados "Around The US". Gestión de rutas y estados con React + Vite.
 
-# Se recreó el sitio de los sprints anteriores utilizando React y Vite
+## Demo
 
-# Se crearon los componentes Header, Main y Footer
+[GitHub Pages](https://drosalesa.github.io/web_project_around_react/)
 
-# Se crearon los componentes Card y Popup para Main
+## Tecnologías y técnicas
 
-# Se crearon los componentes para cada popup particular
+- React
+- TypeScript
+- Vite
+- Context API
+- Formularios controlados/no controlados
+- Conexión a API con fetch tipado
 
-# Los módulos pueden cerrarse con el botón de salir
+## Funcionalidades
 
-# Se hacen llamadas al servidor con api.ts
-
-# Se creó CurrentUserContext.tsx
-
-# https://drosalesa.github.io/web_project_around_react/
+- Agregar/Quitar tarjetas
+- Editar foto de Perfil
+- Editar Nombre y Descripción
+- Dar like a tarjetas
+- Abrir Imagenes de tarjetas

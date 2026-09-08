@@ -67,12 +67,6 @@ class Api {
     });
   }
 
-  toggleLike(cardId: string, isLiked: boolean): Promise<CardData> {
-    return isLiked
-      ? this.removeLike(cardId)
-      : this.addLike(cardId);
-  }
-
   addLike(cardId: string): Promise<CardData> {
     return this.request<CardData>(`cards/${cardId}/likes`, {
       method: "PUT",
